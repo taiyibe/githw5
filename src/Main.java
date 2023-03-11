@@ -11,7 +11,8 @@ public class Main {
             System.out.println("1. Добавить");
             System.out.println("2. Показать");
             System.out.println("3. Удалить");
-            System.out.println("4. Выйти");
+            System.out.println("4. Найти");
+            System.out.println("5. Выйти");
             System.out.println("Выберите операцию:");
             String inp = scanner.nextLine();
             Integer opNum;
@@ -85,6 +86,29 @@ public class Main {
                     }
                     break;
                 case 4:
+                    if (shopList.size() > 0) {
+                        System.out.println("Введите текст для поиска:\n");
+                        List<Integer> rs = new ArrayList<>();
+                        String query = scanner.nextLine().toLowerCase();
+                        for (int i = 0; i < shopList.size(); i++) {
+                            if (shopList.get(i).toLowerCase().contains(query)) {
+                                rs.add(i);
+                            }
+                        }
+                        if (rs.size() > 0) {
+                            System.out.println("Найдено:");
+                            for (int i = 0; i < rs.size(); i++) {
+                                System.out.printf("%d. %s\n", rs.get(i) + 1, shopList.get(rs.get(i)));
+                            }
+                            System.out.println();
+                        } else {
+                            System.out.println("Ничего не найдено.\n");
+                        }
+                    } else {
+                        System.out.println("Список покупок пуст.\n");
+                    }
+                    break;
+                case 5:
                     is_runnig = false;
                     break;
                 default:
